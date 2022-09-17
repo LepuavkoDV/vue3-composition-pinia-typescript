@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export default defineStore('messages', () => {
+export const useMessages = defineStore('messages', () => {
   const message = ref('message');
   return {
     message,

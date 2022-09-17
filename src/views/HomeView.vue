@@ -4,7 +4,7 @@
     <HelloWorld :msg="message"/>
     {{ computedMessage }}
     <button @click="method()">Click Me</button>
-    {{ m.message }}
+    {{ messages.message }}
   </div>
 </template>
 
@@ -12,11 +12,11 @@
 import { ref, computed, onMounted } from 'vue';
 import type { Ref } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
-import messages from '@/store/messages';
+import { useMessages } from '@/store/messages';
 
 const message: Ref<string> = ref('Welcome to your Vue3 + TS app');
 const computedMessage = computed(() => `${message.value} + computed`);
-const m = messages();
+const messages = useMessages();
 onMounted(() => {
   console.log('onMounted');
 });

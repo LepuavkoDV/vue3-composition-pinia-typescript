@@ -1,18 +1,27 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <HelloWorld :msg="message"/>
+    {{ computedMessage }}
+    <button @click="method()">Click Me</button>
+    {{ m.message }}
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue';
+import type { Ref } from 'vue';
+import HelloWorld from '@/components/HelloWorld.vue';
+import messages from '@/store/messages';
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
+const message: Ref<string> = ref('Welcome to your Vue3 + TS app');
+const computedMessage = computed(() => `${message.value} + computed`);
+const m = messages();
+onMounted(() => {
+  console.log('onMounted');
 });
+
+const method = (): void => {
+  // message.value = 1;
+};
 </script>

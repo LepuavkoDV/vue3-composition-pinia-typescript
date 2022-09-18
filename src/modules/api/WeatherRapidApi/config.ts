@@ -5,6 +5,6 @@ export const headers: IRapidApiRequestHeaders = {
   'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com',
 };
 
-export enum ERapidApiWeatherEndpoints {
+export enum EWeatherRapidApiEndpoints {
   minutely = 'https://weatherbit-v1-mashape.p.rapidapi.com/forecast/minutely',
 }

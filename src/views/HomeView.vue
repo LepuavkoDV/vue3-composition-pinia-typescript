@@ -1,21 +1,12 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld :msg="message"/>
-    {{ computedMessage }}
+  <div class="container mx-auto w-1/2 h-fit font-sans bg-slate-100 border-1 rounded">
+    <div class="container mx-auto">{{ weather.city_name }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onBeforeMount } from 'vue';
-import type { Ref } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue';
 import { useWeather } from '@/store/weather';
 
-const message: Ref<string> = ref('Welcome to your Vue3 + TS app');
-const computedMessage = computed(() => `${message.value} + computed`);
 const weather = useWeather();
-onBeforeMount(() => {
-  weather.getWeather();
-});
+weather.getWeather({ lat: '50.45', lon: '30.52' });
 </script>

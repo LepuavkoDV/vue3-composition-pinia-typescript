@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
-import { reactive } from 'vue';
-import { weatherRapidApi } from '@/modules/api';
+import {
+  IMinutelyForecastParams,
+  weatherRapidApi,
+} from '@/modules/api';
 
 /* eslint-disable camelcase */
 export interface IWeatherData {
@@ -23,11 +25,26 @@ export interface IWeatherState {
 }
 /* eslint-enable camelcase */
 
-export const useWeather = defineStore('weather', () => {
-  const state: Partial<IWeatherState> = reactive({});
-  async function getWeather() {
-    const res = await weatherRapidApi.getMinutelyForecast({ lat: '35.5', lon: '-78.5' });
-    state = res;
-  }
-  return { state, getWeather };
+export const useWeather = defineStore('weather', {
+  state: (): IWeatherState => ({
+    /* eslint-disable camelcase */
+    city_name: '',
+    county_code: '',
+    lat: 0,
+    lon: 0,
+    state_code: '',
+    timezone: '',
+    data: [],
+    /* eslint-enable camelcase */
+  }),
+  getters: {},
+  actions: {
+    async getWeather(params: IMinutelyForecastParams) {
+      const { data } = await weatherRapidApi.getMinutelyForecast(params);
+      this.setWeather(data);
+    },
+    setWeather(weatherState: IWeatherState) {
+      this.$patch({ ...weatherState });
+    },
+  },
 });

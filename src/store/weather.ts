@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import {
-  IMinutelyForecastParams,
+  ICoordinates,
   weatherRapidApi,
 } from '@/modules/api';
 
@@ -39,7 +39,7 @@ export const useWeather = defineStore('weather', {
   }),
   getters: {},
   actions: {
-    async getWeather(params: IMinutelyForecastParams) {
+    async getWeather(params: ICoordinates) {
       const { data } = await weatherRapidApi.getMinutelyForecast(params);
       this.setWeather(data);
     },

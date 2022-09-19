@@ -3,8 +3,8 @@ import { AxiosResponse } from 'axios';
 import { headers, EWeatherRapidApiEndpoints } from './config';
 
 export interface ICoordinates {
-  lat: string;
-  lon: string;
+  lat: number;
+  lon: number;
 }
 
 class WeatherRapidApi extends ApiModule implements IApiModule {

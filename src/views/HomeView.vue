@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable max-len -->
   <div class="flex justify-center">
     <div :class="[
       'min-w-sm max-w-sm border border-gray-100 bg-gray-50',
@@ -50,8 +49,8 @@ import IconRainy from '@/components/icons/IconRainy.vue';
 import { useWeather } from '@/store/weather';
 
 const coordinates: ICoordinates = reactive({
-  lat: '50.45',
-  lon: '30.52',
+  lat: 50.45,
+  lon: 30.52,
 });
 const weather = useWeather();
 weather.getWeather(coordinates);

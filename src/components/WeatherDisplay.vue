@@ -1,8 +1,5 @@
 <template>
-  <div :class="[
-      'min-w-sm max-w-sm border border-gray-100 bg-gray-50',
-      'shadow-lg hover:shadow-shadow-xl',
-      'card transition-shadow test w-full bg-green-600 text-purple-50 rounded-md']">
+  <div class="min-w-sm max-w-sm border border-gray-100 bg-gray-50 shadow-lg hover:shadow-shadow-xl card transition-shadow test w-full bg-green-600 text-purple-50 rounded-md">
     <h2 class="text-md mb-2 px-4 pt-4">
       <div class="flex justify-between">
         <div class="badge relative top-0">

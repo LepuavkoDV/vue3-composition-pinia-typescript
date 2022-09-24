@@ -17,8 +17,13 @@ module.exports = {
     'linebreak-style': 0,
     'arrow-body-style': 2,
     'no-confusing-arrow': 2,
-    'max-len': ['error', {
-      code: 140, ignoreComments: true, ignoreStrings: true, ignoreTemplateLiterals: true,
+    'max-len': 'off',
+    'vue/max-len': ['error', {
+      code: 140,
+      template: 1000,
+      ignoreComments: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
     }],
     'no-param-reassign': ['error', { props: false }],
     'vue/no-v-html': 0,

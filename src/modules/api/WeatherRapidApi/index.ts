@@ -1,5 +1,8 @@
-import { ApiModule, IApiModule } from '@/modules/api/HTTPApi/ApiModule';
-import { AxiosResponse } from 'axios';
+import {
+  ApiModule,
+  IApiModule,
+  IApiResponse,
+} from '@/modules/api/HTTPApi/ApiModule';
 import { headers, EWeatherRapidApiEndpoints } from './config';
 
 export interface ICoordinates {
@@ -13,7 +16,7 @@ class WeatherRapidApi extends ApiModule implements IApiModule {
     this.http.setHeaders(headers);
   }
 
-  getMinutelyForecast(params: ICoordinates): Promise<AxiosResponse> {
+  getMinutelyForecast(params: ICoordinates): Promise<IApiResponse> {
     return this.http.get(EWeatherRapidApiEndpoints.minutely, { params });
   }
 }

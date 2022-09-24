@@ -14,11 +14,9 @@ export interface IWeatherData {
   ts: number;
 }
 
-export interface IWeatherState {
+export interface IWeatherState extends ICoordinates {
   city_name: string;
   county_code: string;
-  lat: number;
-  lon: number;
   state_code: string;
   timezone: string;
   data: IWeatherData[];
@@ -37,13 +35,17 @@ export const useWeather = defineStore('weather', {
     data: [],
     /* eslint-enable camelcase */
   }),
-  getters: {},
+  getters: {
+    getLatestWeatherData(state): IWeatherData {
+      return state.data[state.data.length - 1];
+    },
+  },
   actions: {
-    async getWeather(params: ICoordinates) {
+    async getWeather(params: ICoordinates): Promise<void> {
       const { data } = await weatherRapidApi.getMinutelyForecast(params);
       this.setWeather(data);
     },
-    setWeather(weatherState: IWeatherState) {
+    setWeather(weatherState: IWeatherState): void {
       this.$patch({ ...weatherState });
     },
   },

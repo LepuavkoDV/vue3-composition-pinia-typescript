@@ -1,7 +1,7 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav class="flex-row w-full h-1 p-2 mb-3">
+    <router-link to="/">Weather</router-link> |
+    <router-link to="/random-palette">Random Palette</router-link>
   </nav>
   <router-view/>
 </template>

@@ -28,7 +28,7 @@
             </span>
         </div>
         <div>
-          <h1 class="text-6xl">{{ props.weather.temp }}°</h1>
+          <h1 class="text-6xl">{{ props.weather?.temp }}°</h1>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@ interface WeatherDisplayProps {
 }
 
 const props = defineProps<WeatherDisplayProps>();
-const time = computed<string>(() => new Date(props.weather.timestamp_local).toLocaleTimeString());
+const time = computed<string | undefined>(() => new Date(props.weather?.timestamp_local).toLocaleTimeString());
 </script>
 
 <style scoped>

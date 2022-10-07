@@ -5,7 +5,8 @@ import axios, {
   AxiosRequestHeaders,
 } from 'axios';
 import qs from 'query-string';
-import { defaultTimeout } from './config';
+
+export const defaultTimeout = 5000;
 
 export interface IHTTP {
   instance: AxiosInstance;

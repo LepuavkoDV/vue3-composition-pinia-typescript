@@ -14,3 +14,5 @@ export class ApiModule implements IApiModule {
     this.http = new HTTP();
   }
 }
+
+export * from './types';

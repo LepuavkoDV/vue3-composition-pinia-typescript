@@ -5,10 +5,11 @@ import axios, {
   AxiosRequestHeaders,
 } from 'axios';
 import qs from 'query-string';
+import { defaultTimeout } from './config';
 
-export interface IHTTPInstance {
-  http: AxiosInstance;
-  qs: typeof qs;
+export interface IHTTP {
+  instance: AxiosInstance;
+  queryString: typeof qs;
   headers: AxiosRequestHeaders;
   timeout: number;
   setTimeout(timeout: number): void;
@@ -24,79 +25,79 @@ export interface IHTTPInstance {
   patch<T = any, R = AxiosResponse<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>;
 }
 
-export class HTTPInstance implements IHTTPInstance {
+export class HTTP implements IHTTP {
   headers: AxiosRequestHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   };
 
-  timeout = 5000;
+  timeout = defaultTimeout;
 
-  http: AxiosInstance;
+  instance: AxiosInstance;
 
-  qs = qs;
+  queryString = qs;
 
   constructor() {
     const {
       timeout, headers,
     } = this;
-    this.http = axios.create({
+    this.instance = axios.create({
       timeout,
       headers,
     });
 
-    this.http.interceptors.request.use(
+    this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => config,
       (error) => Promise.reject(error),
     );
 
-    this.http.interceptors.response.use(
+    this.instance.interceptors.response.use(
       (response: AxiosResponse) => response,
       (error) => Promise.reject(error),
     );
   }
 
   request<T = any, R = AxiosResponse<T>>(config: AxiosRequestConfig): Promise<R> {
-    return this.http.request(config);
+    return this.instance.request(config);
   }
 
   get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.get(url, config);
+    return this.instance.get(url, config);
   }
 
   delete<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.delete(url, config);
+    return this.instance.delete(url, config);
   }
 
   head<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.head(url, config);
+    return this.instance.head(url, config);
   }
 
   options<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.options(url, config);
+    return this.instance.options(url, config);
   }
 
   post<T = any, R = AxiosResponse<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.post(url, data, config);
+    return this.instance.post(url, data, config);
   }
 
   put<T = any, R = AxiosResponse<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.put(url, data, config);
+    return this.instance.put(url, data, config);
   }
 
   patch<T = any, R = AxiosResponse<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R> {
-    return this.http.patch(url, data, config);
+    return this.instance.patch(url, data, config);
   }
 
   setTimeout(timeout: number) {
-    this.http.defaults.timeout = timeout;
+    this.instance.defaults.timeout = timeout;
   }
 
   setBaseUrl(url: string) {
-    this.http.defaults.baseURL = url;
+    this.instance.defaults.baseURL = url;
   }
 
   setHeaders(headers: AxiosRequestHeaders) {
-    this.http.defaults.headers.common = headers;
+    this.instance.defaults.headers.common = headers;
   }
 }

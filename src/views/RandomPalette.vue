@@ -11,7 +11,7 @@
 import { computed } from 'vue';
 import {
   useRandomPalette,
-} from '@/store/randomPalette';
+} from '@/modules/store/randomPalette';
 
 const randomPalette = useRandomPalette();
 randomPalette.getRandomPalette(1, 5);

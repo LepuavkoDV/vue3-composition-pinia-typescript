@@ -11,7 +11,8 @@
 import { reactive } from 'vue';
 import { ICoordinates } from '@/modules/api';
 import WeatherDisplay from '@/components/WeatherDisplay';
-import { useWeather } from '@/store/weather';
+import { useWeather } from '@/modules/store/weather';
+import { useRandomPalette } from '@/modules/store/randomPalette';
 
 const coordinates: ICoordinates = reactive({
   lat: 50.45,
@@ -19,4 +20,6 @@ const coordinates: ICoordinates = reactive({
 });
 const weather = useWeather();
 weather.getWeather(coordinates);
+const rand = useRandomPalette();
+rand.getRandomPalette(1, 2);
 </script>

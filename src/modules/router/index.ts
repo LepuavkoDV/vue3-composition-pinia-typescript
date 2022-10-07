@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import HomeView from '@/views/HomeView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/random-palette',
     name: 'random-palette',
-    component: () => import(/* webpackChunkName: "random-palette" */ '../views/RandomPalette.vue'),
+    component: () => import(/* webpackChunkName: "random-palette" */ '@/views/RandomPalette.vue'),
   },
 ];
 

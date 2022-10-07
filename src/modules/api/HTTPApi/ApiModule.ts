@@ -1,16 +1,16 @@
 import { AxiosResponse } from 'axios';
-import { HTTPInstance } from './HTTPInstance';
+import { HTTP } from './HTTP';
 
 export type IApiResponse = AxiosResponse;
 
 export interface IApiModule {
-  http: HTTPInstance;
+  http: HTTP;
 }
 
 export class ApiModule implements IApiModule {
-  http: HTTPInstance;
+  http: HTTP;
 
   constructor() {
-    this.http = new HTTPInstance();
+    this.http = new HTTP();
   }
 }

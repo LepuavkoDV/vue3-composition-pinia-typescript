@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
-import App from './App.vue';
 import './registerServiceWorker';
-import router from './router';
-import store from './store';
+import router from '@/modules/router';
+import store from '@/modules/store';
+import App from './App.vue';
 
 const app = createApp(App);
 app.use(router);
